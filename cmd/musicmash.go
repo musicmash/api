@@ -6,7 +6,6 @@ import (
 	raven "github.com/getsentry/raven-go"
 	"github.com/musicmash/api/internal/api"
 	"github.com/musicmash/api/internal/config"
-	"github.com/musicmash/api/internal/db"
 	"github.com/musicmash/api/internal/log"
 	"github.com/pkg/errors"
 )
@@ -25,7 +24,6 @@ func main() {
 	log.SetLogFormatter(&log.DefaultFormatter)
 	log.ConfigureStdLogger(config.Config.Log.Level)
 
-	db.DbMgr = db.NewMainDatabaseMgr()
 	if config.Config.Sentry.Enabled {
 		if err := raven.SetDSN(config.Config.Sentry.Key); err != nil {
 			panic(errors.Wrap(err, "tried to setup sentry client"))
