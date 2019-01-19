@@ -4,10 +4,10 @@ import (
 	"flag"
 
 	raven "github.com/getsentry/raven-go"
-	"github.com/musicmash/musicmash/internal/api"
-	"github.com/musicmash/musicmash/internal/config"
-	"github.com/musicmash/musicmash/internal/db"
-	"github.com/musicmash/musicmash/internal/log"
+	"github.com/musicmash/api/internal/api"
+	"github.com/musicmash/api/internal/config"
+	"github.com/musicmash/api/internal/db"
+	"github.com/musicmash/api/internal/log"
 	"github.com/pkg/errors"
 )
 

@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/musicmash/musicmash/internal/config"
-	"github.com/musicmash/musicmash/internal/db"
-	"github.com/musicmash/musicmash/internal/testutil"
+	"github.com/musicmash/api/internal/config"
+	"github.com/musicmash/api/internal/db"
+	"github.com/musicmash/api/internal/testutil"
 	"github.com/stretchr/testify/assert"
 )
 

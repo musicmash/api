@@ -7,9 +7,9 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/jinzhu/gorm"
-	"github.com/musicmash/musicmash/internal/api/validators"
-	"github.com/musicmash/musicmash/internal/db"
-	"github.com/musicmash/musicmash/internal/log"
+	"github.com/musicmash/api/internal/api/validators"
+	"github.com/musicmash/api/internal/db"
+	"github.com/musicmash/api/internal/log"
 )
 
 func searchArtist(w http.ResponseWriter, r *http.Request) {

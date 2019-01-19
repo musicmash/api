@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/jinzhu/gorm"
-	"github.com/musicmash/musicmash/internal/db"
-	"github.com/musicmash/musicmash/internal/log"
+	"github.com/musicmash/api/internal/db"
+	"github.com/musicmash/api/internal/log"
 )
 
 func createUser(w http.ResponseWriter, r *http.Request) {
