@@ -1,7 +1,7 @@
 all:
 
 clean:
-	rm bin/musicmash || true
+	rm bin/musicmash-api || true
 
 build: clean
 	GOOS=linux GOARCH=amd64 go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash cmd/musicmash.go

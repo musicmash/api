@@ -2,7 +2,7 @@
 FROM golang:latest as builder
 
 # Docker is copying directory contents so we need to copy them in same directories.
-WORKDIR /go/src/github.com/musicmash/musicmash
+WORKDIR /go/src/github.com/musicmash/api
 COPY cmd cmd
 COPY internal internal
 COPY vendor vendor
@@ -11,7 +11,7 @@ COPY vendor vendor
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
-RUN go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash cmd/musicmash.go
+RUN go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash cmd/musicmash-api.go
 
 # Create the final small image.
 FROM alpine:latest
@@ -22,6 +22,6 @@ RUN apk update && apk upgrade && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /root/
-COPY --from=builder /go/src/github.com/musicmash/musicmash/bin .
+COPY --from=builder /go/src/github.com/musicmash/musicmash-api/bin .
 
-ENTRYPOINT ["./musicmash"]
+ENTRYPOINT ["./musicmash-api"]
