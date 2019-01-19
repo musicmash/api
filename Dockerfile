@@ -22,6 +22,6 @@ RUN apk update && apk upgrade && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /root/
-COPY --from=builder /go/src/github.com/musicmash/musicmash-api/bin .
+COPY --from=builder /go/src/github.com/musicmash/api/bin .
 
 ENTRYPOINT ["./musicmash-api"]
