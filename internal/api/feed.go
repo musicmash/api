@@ -14,5 +14,4 @@ func getUserFeed(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusHTTPVersionNotSupported)
-	return
 }

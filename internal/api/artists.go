@@ -21,7 +21,6 @@ func searchArtist(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusHTTPVersionNotSupported)
-	return
 }
 
 func getArtistDetails(w http.ResponseWriter, r *http.Request) {
@@ -32,5 +31,4 @@ func getArtistDetails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusHTTPVersionNotSupported)
-	return
 }
