@@ -1,15 +1,11 @@
 package api
 
 import (
-	"encoding/json"
 	"net/http"
 	"strings"
 
 	"github.com/go-chi/chi"
-	"github.com/jinzhu/gorm"
 	"github.com/musicmash/api/internal/api/validators"
-	"github.com/musicmash/api/internal/db"
-	"github.com/musicmash/api/internal/log"
 )
 
 func searchArtist(w http.ResponseWriter, r *http.Request) {
@@ -24,15 +20,8 @@ func searchArtist(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	artists, err := db.DbMgr.SearchArtists(name)
-	if err != nil {
-		log.Error(err)
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	buffer, _ := json.Marshal(&artists)
-	w.Write(buffer)
+	w.WriteHeader(http.StatusHTTPVersionNotSupported)
+	return
 }
 
 func getArtistDetails(w http.ResponseWriter, r *http.Request) {
@@ -42,18 +31,6 @@ func getArtistDetails(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	details, err := db.DbMgr.GetArtistDetails(name)
-	if err != nil {
-		if err == gorm.ErrRecordNotFound {
-			w.WriteHeader(http.StatusNotFound)
-			return
-		}
-
-		log.Error(err)
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	buffer, _ := json.Marshal(&details)
-	w.Write(buffer)
+	w.WriteHeader(http.StatusHTTPVersionNotSupported)
+	return
 }

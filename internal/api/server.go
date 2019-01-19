@@ -20,9 +20,6 @@ func getMux() *chi.Mux {
 	r.Use(middleware.Recoverer)
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 
-	r.Post("/{user_name}/chats", addUserChat)
-	r.Post("/users", createUser)
-	r.Post("/{user_name}/chats", addUserChat)
 	r.Get("/{user_name}/feed", getUserFeed)
 	r.Post("/{user_name}/subscriptions", createSubscriptions)
 	r.Delete("/{user_name}/subscriptions", deleteSubscriptions)
