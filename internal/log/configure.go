@@ -36,7 +36,7 @@ func ConfigureStdLogger(logLevel string) {
 	}
 
 	if config.Config.Log.SyslogEnabled {
-		hook, err := logrus_syslog.NewSyslogHook("", "", syslog.LOG_LOCAL0, "musicmash")
+		hook, err := logrus_syslog.NewSyslogHook("", "", syslog.LOG_LOCAL0, "musicmash-api")
 
 		if err == nil {
 			logger.Hooks.Add(hook)

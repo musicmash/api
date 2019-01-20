@@ -11,7 +11,7 @@ COPY vendor vendor
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
-RUN go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash cmd/musicmash-api.go
+RUN go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash-api cmd/musicmash-api.go
 
 # Create the final small image.
 FROM alpine:latest

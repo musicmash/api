@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	configPath := flag.String("config", "/etc/musicmash-api/musicmash.yaml", "Path to musicmash.yaml config")
+	configPath := flag.String("config", "/etc/musicmash-api/musicmash-api.yaml", "Path to musicmash-api.yaml config")
 	flag.Parse()
 
 	if err := config.InitConfig(*configPath); err != nil {
@@ -30,6 +30,6 @@ func main() {
 		}
 	}
 
-	log.Info("Running musicmash..")
+	log.Info("Running musicmash-api..")
 	log.Panic(api.ListenAndServe(config.Config.HTTP.IP, config.Config.HTTP.Port))
 }
