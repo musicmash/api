@@ -37,14 +37,6 @@
   version = "v3.3.3"
 
 [[projects]]
-  digest = "1:54d7b4b9ab2bb2bae35b55eea900bc8fe15cba05a95fc78bf7fd7b82a9a07afa"
-  name = "github.com/go-chi/render"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "3215478343fbc559bd3fc08f7031bb134d6bdad5"
-  version = "v1.0.1"
-
-[[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
   name = "github.com/pkg/errors"
   packages = ["."]
@@ -121,7 +113,6 @@
     "github.com/getsentry/raven-go",
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
-    "github.com/go-chi/render",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/sirupsen/logrus",

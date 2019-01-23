@@ -6,7 +6,6 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/go-chi/render"
 	"github.com/musicmash/api/internal/log"
 )
 
@@ -18,7 +17,6 @@ func getMux() *chi.Mux {
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
-	r.Use(render.SetContentType(render.ContentTypeJSON))
 
 	r.Get("/{user_name}/feed", getUserFeed)
 	r.Post("/{user_name}/subscriptions", createSubscriptions)
