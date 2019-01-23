@@ -1,10 +1,10 @@
 all:
 
 clean:
-	rm bin/musicmash || true
+	rm bin/musicmash-api || true
 
 build: clean
-	GOOS=linux GOARCH=amd64 go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash cmd/musicmash.go
+	GOOS=linux GOARCH=amd64 go build -v -a -installsuffix cgo -gcflags "all=-trimpath=$(GOPATH)" -o bin/musicmash cmd/musicmash-api.go
 
 rgo:
 	go get -u github.com/kyoh86/richgo
@@ -16,7 +16,7 @@ t tests: install
 	go test -v ./internal/...
 
 add-ssh-key:
-	openssl aes-256-cbc -K $(encrypted_a4311917bb34_key) -iv $(encrypted_a4311917bb34_iv) -in travis_key.enc -out /tmp/travis_key -d
+	openssl aes-256-cbc -K $(encrypted_ada91241341a_key) -iv $(encrypted_ada91241341a_iv) -in travis_key.enc -out /tmp/travis_key -d
 	chmod 600 /tmp/travis_key
 	ssh-add /tmp/travis_key
 
@@ -30,10 +30,10 @@ docker-push: docker-login
 	docker push $(REGISTRY_REPO):$(VERSION)
 
 deploy:
-	ssh -o "StrictHostKeyChecking no" $(HOST_USER)@$(HOST) make run-music
+	ssh -o "StrictHostKeyChecking no" $(HOST_USER)@$(HOST) make run-music-api
 
 deploy-staging:
-	ssh -o "StrictHostKeyChecking no" $(HOST_USER)@$(STAGING_HOST) make run-music
+	ssh -o "StrictHostKeyChecking no" $(HOST_USER)@$(STAGING_HOST) make run-music-api
 
 lint-all l:
 	bash ./scripts/golangci-lint.sh

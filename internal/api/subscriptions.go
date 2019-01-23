@@ -5,16 +5,13 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	"github.com/musicmash/musicmash/internal/api/validators"
-	"github.com/musicmash/musicmash/internal/db"
-	"github.com/musicmash/musicmash/internal/log"
-	tasks "github.com/musicmash/musicmash/internal/tasks/subscriptions"
-	"github.com/pkg/errors"
+	"github.com/musicmash/api/internal/clients/subscriptions"
 )
 
 func createSubscriptions(w http.ResponseWriter, r *http.Request) {
 	userName := chi.URLParam(r, "user_name")
-	if err := validators.IsUserExits(w, userName); err != nil {
+	if err := IsUserExits(w, userName); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -24,49 +21,50 @@ func createSubscriptions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Debugf("User '%s' wanna subscriptions for %d artists", userName, len(userArtists))
-	tasks.SubscribeUserForArtists(userName, userArtists)
+	if err := subscriptions.Subscribe(subscriptionsProvider, userName, userArtists); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 	w.WriteHeader(http.StatusAccepted)
 }
 
 func deleteSubscriptions(w http.ResponseWriter, r *http.Request) {
 	userName := chi.URLParam(r, "user_name")
-	if err := validators.IsUserExits(w, userName); err != nil {
-		return
-	}
-
-	artists := []string{}
-	if err := json.NewDecoder(r.Body).Decode(&artists); err != nil {
+	if err := IsUserExits(w, userName); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	if err := db.DbMgr.UnsubscribeUserFromArtists(userName, artists); err != nil {
-		log.Error(errors.Wrapf(err, "tried to unsubscribe user '%s' from artists '%v'", userName, artists))
+	userArtists := []string{}
+	if err := json.NewDecoder(r.Body).Decode(&userArtists); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 
+	if err := subscriptions.UnSubscribe(subscriptionsProvider, userName, userArtists); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 	w.WriteHeader(http.StatusOK)
 }
 
 func getUserSubscriptions(w http.ResponseWriter, r *http.Request) {
 	userName := chi.URLParam(r, "user_name")
-	if err := validators.IsUserExits(w, userName); err != nil {
+	if err := IsUserExits(w, userName); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	subs, err := db.DbMgr.FindAllUserSubscriptions(userName)
+	userSubscriptions, err := subscriptions.Get(subscriptionsProvider, userName)
 	if err != nil {
-		log.Error(errors.Wrapf(err, "tried to get subscriptions for '%s'", userName))
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	body, err := json.Marshal(&subs)
+	body, err := json.Marshal(&userSubscriptions)
 	if err != nil {
-		log.Error(errors.Wrapf(err, "tried to marshal subscriptions for '%s'", userName))
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-
 	w.Write(body)
 }

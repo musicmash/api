@@ -6,14 +6,14 @@ import (
 	"time"
 
 	"github.com/go-chi/chi"
-	"github.com/musicmash/musicmash/internal/api/validators"
-	"github.com/musicmash/musicmash/internal/db"
-	"github.com/musicmash/musicmash/internal/log"
+	"github.com/musicmash/api/internal/clients/feed"
+	"github.com/musicmash/api/internal/log"
 )
 
 func getUserFeed(w http.ResponseWriter, r *http.Request) {
 	userName := chi.URLParam(r, "user_name")
-	if err := validators.IsUserExits(w, userName); err != nil {
+	if err := IsUserExits(w, userName); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -26,15 +26,25 @@ func getUserFeed(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
+
+		if weekAgo.After(time.Now().UTC().Truncate(time.Hour)) {
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
 	}
 
-	feed, err := db.DbMgr.GetUserFeedSince(userName, weekAgo)
+	userFeed, err := feed.Get(feedProvider, userName, &feed.Options{Since: &weekAgo})
 	if err != nil {
-		log.Error(err)
 		w.WriteHeader(http.StatusInternalServerError)
+		log.Error(err)
 		return
 	}
 
-	buffer, _ := json.Marshal(&feed)
+	buffer, err := json.Marshal(&userFeed)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		log.Error(err)
+		return
+	}
 	w.Write(buffer)
 }

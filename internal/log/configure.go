@@ -4,7 +4,7 @@ import (
 	"log/syslog"
 	"os"
 
-	"github.com/musicmash/musicmash/internal/config"
+	"github.com/musicmash/api/internal/config"
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
 	logrus_syslog "github.com/sirupsen/logrus/hooks/syslog"
@@ -36,7 +36,7 @@ func ConfigureStdLogger(logLevel string) {
 	}
 
 	if config.Config.Log.SyslogEnabled {
-		hook, err := logrus_syslog.NewSyslogHook("", "", syslog.LOG_LOCAL0, "musicmash")
+		hook, err := logrus_syslog.NewSyslogHook("", "", syslog.LOG_LOCAL0, "musicmash-api")
 
 		if err == nil {
 			logger.Hooks.Add(hook)
