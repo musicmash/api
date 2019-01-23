@@ -1,34 +1,69 @@
 package api
 
 import (
+	"encoding/json"
 	"net/http"
 	"strings"
 
 	"github.com/go-chi/chi"
-	"github.com/musicmash/api/internal/api/validators"
+	"github.com/musicmash/api/internal/clients/artists"
+	"github.com/musicmash/api/internal/log"
 )
 
 func searchArtist(w http.ResponseWriter, r *http.Request) {
 	userName := chi.URLParam(r, "user_name")
-	if err := validators.IsUserExits(w, userName); err != nil {
-		return
-	}
-
-	name := strings.TrimSpace(r.URL.Query().Get("name"))
-	if name == "" {
+	if err := IsUserExits(w, userName); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	w.WriteHeader(http.StatusHTTPVersionNotSupported)
+	artistName := strings.TrimSpace(r.URL.Query().Get("name"))
+	if artistName == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	artists, err := artists.Search(artistsProvider, userName, artistName)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		log.Error(err)
+		return
+	}
+
+	buffer, err := json.Marshal(&artists)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		log.Error(err)
+		return
+	}
+	w.Write(buffer)
 }
 
 func getArtistDetails(w http.ResponseWriter, r *http.Request) {
-	name := strings.TrimSpace(chi.URLParam(r, "artist_name"))
-	if name == "" {
+	userName := chi.URLParam(r, "user_name")
+	if err := IsUserExits(w, userName); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	w.WriteHeader(http.StatusHTTPVersionNotSupported)
+	artistName := chi.URLParam(r, "artist_name")
+	if artistName == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	artists, err := artists.GetDetails(artistsProvider, userName, artistName)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		log.Error(err)
+		return
+	}
+
+	buffer, err := json.Marshal(&artists)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		log.Error(err)
+		return
+	}
+	w.Write(buffer)
 }

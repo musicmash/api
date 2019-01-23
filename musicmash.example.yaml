@@ -9,3 +9,9 @@ log:
 sentry:
   enabled: true
   key: "https://xxxxx:yyyyy@sentry.io/123456"
+
+services:
+  artists: "https://internal/artists"
+  feed: "https://internal/feed"
+  subscriptions: "https://internal/subscriptions"
+  users: "https://internal/users"

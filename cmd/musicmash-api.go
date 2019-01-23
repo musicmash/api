@@ -31,5 +31,6 @@ func main() {
 	}
 
 	log.Info("Running musicmash-api..")
+	api.InitProviders()
 	log.Panic(api.ListenAndServe(config.Config.HTTP.IP, config.Config.HTTP.Port))
 }

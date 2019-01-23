@@ -10,9 +10,10 @@ import (
 var Config *AppConfig
 
 type AppConfig struct {
-	HTTP   HTTPConfig `yaml:"http"`
-	Log    LogConfig  `yaml:"log"`
-	Sentry Sentry     `yaml:"sentry"`
+	HTTP     HTTPConfig `yaml:"http"`
+	Log      LogConfig  `yaml:"log"`
+	Sentry   Sentry     `yaml:"sentry"`
+	Services Services   `yaml:"services"`
 }
 
 type HTTPConfig struct {
@@ -29,6 +30,13 @@ type LogConfig struct {
 type Sentry struct {
 	Enabled bool   `yaml:"enabled"`
 	Key     string `yaml:"key"`
+}
+
+type Services struct {
+	Artists       string `yaml:"artists"`
+	Feed          string `yaml:"feed"`
+	Subscriptions string `yaml:"subscriptions"`
+	Users         string `yaml:"users"`
 }
 
 func InitConfig(filepath string) error {
