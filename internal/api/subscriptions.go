@@ -61,10 +61,11 @@ func getUserSubscriptions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	body, err := json.Marshal(&userSubscriptions)
+	buffer, err := json.Marshal(&userSubscriptions)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	w.Write(body)
+	w.Header().Set("content-type", "application/json")
+	w.Write(buffer)
 }

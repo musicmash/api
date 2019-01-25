@@ -46,5 +46,6 @@ func getUserFeed(w http.ResponseWriter, r *http.Request) {
 		log.Error(err)
 		return
 	}
+	w.Header().Set("content-type", "application/json")
 	w.Write(buffer)
 }
