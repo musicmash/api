@@ -66,5 +66,6 @@ func getUserSubscriptions(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	w.Header().Set("content-type", "application/json")
 	w.Write(buffer)
 }
