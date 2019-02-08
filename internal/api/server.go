@@ -20,17 +20,22 @@ func getMux() *chi.Mux {
 
 	r.Post("/auth", authUser)
 
-	r.Get("/{user_name}/feed", getUserFeed)
+	r.Route("/feed", func(r chi.Router) {
+		r.Use(Auth)
+		r.Get("/", getUserFeed)
+	})
 
-	r.Route("/{user_name}/subscriptions", func(r chi.Router) {
+	r.Route("/subscriptions", func(r chi.Router) {
+		r.Use(Auth)
 		r.Get("/", getUserSubscriptions)
 		r.Post("/", createSubscriptions)
 		r.Delete("/", deleteSubscriptions)
 	})
 
-	r.Route("/{user_name}/artists", func(r chi.Router) {
+	r.Route("/artists", func(r chi.Router) {
+		r.Use(Auth)
 		r.Get("/", searchArtist)
-		r.Get("/{user_name}/artists/{artist_name}", getArtistDetails)
+		r.Get("/artists/{artist_name}", getArtistDetails)
 	})
 	return r
 }

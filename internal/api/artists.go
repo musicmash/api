@@ -11,12 +11,7 @@ import (
 )
 
 func searchArtist(w http.ResponseWriter, r *http.Request) {
-	userName := chi.URLParam(r, "user_name")
-	if err := IsUserExits(w, userName); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
+	userName := getUserName(r)
 	artistName := strings.TrimSpace(r.URL.Query().Get("name"))
 	if artistName == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -41,12 +36,7 @@ func searchArtist(w http.ResponseWriter, r *http.Request) {
 }
 
 func getArtistDetails(w http.ResponseWriter, r *http.Request) {
-	userName := chi.URLParam(r, "user_name")
-	if err := IsUserExits(w, userName); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
+	userName := getUserName(r)
 	artistName := chi.URLParam(r, "artist_name")
 	if artistName == "" {
 		w.WriteHeader(http.StatusBadRequest)

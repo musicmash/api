@@ -5,18 +5,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi"
 	"github.com/musicmash/api/internal/clients/feed"
 	"github.com/musicmash/api/internal/log"
 )
 
 func getUserFeed(w http.ResponseWriter, r *http.Request) {
-	userName := chi.URLParam(r, "user_name")
-	if err := IsUserExits(w, userName); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
+	userName := getUserName(r)
 	since := r.URL.Query().Get("since")
 	weekAgo := time.Now().UTC().Add(-time.Hour * 24 * 7)
 	if since != "" {
