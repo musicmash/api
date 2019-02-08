@@ -15,3 +15,4 @@ services:
   feed: "https://internal/feed"
   subscriptions: "https://internal/subscriptions"
   users: "https://internal/users"
+  auth: "https://internal/auth"
