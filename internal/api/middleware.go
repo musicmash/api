@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/google/uuid"
+	"github.com/musicmash/api/internal/log"
 	"github.com/musicmash/auth/pkg/api/info"
 )
 
@@ -16,12 +17,14 @@ func Auth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		token := w.Header().Get(HeaderToken)
 		if _, err := uuid.Parse(token); err != nil {
+			log.Debugf("can't parse uuid '%s'", token)
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
 
 		session, err := info.Get(authProvider, token)
 		if err != nil {
+			log.Debugf("can't find session with provided token '%s'", token)
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
