@@ -15,7 +15,7 @@ const (
 
 func Auth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		token := w.Header().Get(HeaderToken)
+		token := r.Header.Get(HeaderToken)
 		if _, err := uuid.Parse(token); err != nil {
 			log.Debugf("can't parse uuid '%s'", token)
 			w.WriteHeader(http.StatusUnauthorized)
