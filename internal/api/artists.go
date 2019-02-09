@@ -38,11 +38,6 @@ func searchArtist(w http.ResponseWriter, r *http.Request) {
 func getArtistDetails(w http.ResponseWriter, r *http.Request) {
 	userName := getUserName(r)
 	artistName := chi.URLParam(r, "artist_name")
-	if artistName == "" {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
 	artists, err := artists.GetDetails(artistsProvider, userName, artistName)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
