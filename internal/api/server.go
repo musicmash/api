@@ -18,12 +18,25 @@ func getMux() *chi.Mux {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
-	r.Get("/{user_name}/feed", getUserFeed)
-	r.Post("/{user_name}/subscriptions", createSubscriptions)
-	r.Delete("/{user_name}/subscriptions", deleteSubscriptions)
-	r.Get("/{user_name}/subscriptions", getUserSubscriptions)
-	r.Get("/{user_name}/artists", searchArtist)
-	r.Get("/{user_name}/artists/{artist_name}", getArtistDetails)
+	r.Post("/auth", authUser)
+
+	r.Route("/feed", func(r chi.Router) {
+		r.Use(Auth)
+		r.Get("/", getUserFeed)
+	})
+
+	r.Route("/subscriptions", func(r chi.Router) {
+		r.Use(Auth)
+		r.Get("/", getUserSubscriptions)
+		r.Post("/", createSubscriptions)
+		r.Delete("/", deleteSubscriptions)
+	})
+
+	r.Route("/artists", func(r chi.Router) {
+		r.Use(Auth)
+		r.Get("/", searchArtist)
+		r.Get("/{artist_name}", getArtistDetails)
+	})
 	return r
 }
 

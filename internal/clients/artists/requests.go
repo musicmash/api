@@ -3,6 +3,7 @@ package artists
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 
 	"github.com/musicmash/api/internal/clients"
 )
@@ -29,6 +30,13 @@ func GetDetails(provider *clients.Provider, userName, artistName string) (*Artis
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode >= http.StatusBadRequest {
+		if resp.StatusCode == http.StatusNotFound {
+			return nil, ErrArtistNotFound
+		}
+		return nil, fmt.Errorf("got %d status code from musicmash/artists", resp.StatusCode)
+	}
 
 	details := ArtistInfo{}
 	if err := json.NewDecoder(resp.Body).Decode(&details); err != nil {

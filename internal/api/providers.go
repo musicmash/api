@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/musicmash/api/internal/clients"
 	"github.com/musicmash/api/internal/config"
+	"github.com/musicmash/auth/pkg/api"
 )
 
 var (
@@ -10,6 +11,7 @@ var (
 	artistsProvider       *clients.Provider
 	subscriptionsProvider *clients.Provider
 	usersProvider         *clients.Provider
+	authProvider          *api.Provider
 )
 
 func InitProviders() {
@@ -17,4 +19,5 @@ func InitProviders() {
 	artistsProvider = clients.NewProvider(config.Config.Services.Artists)
 	subscriptionsProvider = clients.NewProvider(config.Config.Services.Subscriptions)
 	usersProvider = clients.NewProvider(config.Config.Services.Users)
+	authProvider = api.NewProvider(config.Config.Services.Auth)
 }

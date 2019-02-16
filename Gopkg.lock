@@ -37,6 +37,26 @@
   version = "v3.3.3"
 
 [[projects]]
+  digest = "1:236d7e1bdb50d8f68559af37dbcf9d142d56b431c9b2176d41e2a009b664cda8"
+  name = "github.com/google/uuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "9b3b1e0f5f99ae461456d768e7d301a7acdaa2d8"
+  version = "v1.1.0"
+
+[[projects]]
+  branch = "develop"
+  digest = "1:48e17c1b89b3a93260a1526a1a9e8d8f3cc56ce6126761ade9e24fd22c1862a9"
+  name = "github.com/musicmash/auth"
+  packages = [
+    "pkg/api",
+    "pkg/api/auth",
+    "pkg/api/info",
+  ]
+  pruneopts = "UT"
+  revision = "6377797a9ea65c3d810ad40aafdba8fce9cf5962"
+
+[[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
   name = "github.com/pkg/errors"
   packages = ["."]
@@ -113,6 +133,10 @@
     "github.com/getsentry/raven-go",
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
+    "github.com/google/uuid",
+    "github.com/musicmash/auth/pkg/api",
+    "github.com/musicmash/auth/pkg/api/auth",
+    "github.com/musicmash/auth/pkg/api/info",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/sirupsen/logrus",
