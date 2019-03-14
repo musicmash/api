@@ -18,6 +18,8 @@ func getMux() *chi.Mux {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
+	r.Get("/healthz", healthz)
+
 	r.Post("/auth", authUser)
 
 	r.Route("/feed", func(r chi.Router) {
