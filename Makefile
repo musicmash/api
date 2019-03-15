@@ -33,7 +33,7 @@ deploy:
 	ssh -o "StrictHostKeyChecking no" $(HOST_USER)@$(HOST) make run-music-api
 
 deploy-staging:
-	ssh -o "StrictHostKeyChecking no" $(HOST_USER)@$(STAGING_HOST) make run-music-api
+	ssh -o "StrictHostKeyChecking no" $(STAGING_USER)@$(STAGING_HOST) make run-music-api
 
 lint-all l:
 	bash ./scripts/golangci-lint.sh
