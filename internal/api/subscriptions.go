@@ -4,11 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/musicmash/api/internal/api/middleware/auth"
 	"github.com/musicmash/api/internal/clients/subscriptions"
 )
 
 func createSubscriptions(w http.ResponseWriter, r *http.Request) {
-	userName := getUserName(r)
+	userName := auth.GetUserName(r)
 	userArtists := []string{}
 	if err := json.NewDecoder(r.Body).Decode(&userArtists); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -23,7 +24,7 @@ func createSubscriptions(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteSubscriptions(w http.ResponseWriter, r *http.Request) {
-	userName := getUserName(r)
+	userName := auth.GetUserName(r)
 	userArtists := []string{}
 	if err := json.NewDecoder(r.Body).Decode(&userArtists); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -38,7 +39,7 @@ func deleteSubscriptions(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUserSubscriptions(w http.ResponseWriter, r *http.Request) {
-	userName := getUserName(r)
+	userName := auth.GetUserName(r)
 	userSubscriptions, err := subscriptions.Get(subscriptionsProvider, userName)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
