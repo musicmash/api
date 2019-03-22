@@ -11,7 +11,7 @@ import (
 func NewMiddleware(authorizer Authorizer) middleware.Middleware {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			token := r.Header.Get(HeaderToken)
+			token := GetToken(r)
 			if _, err := uuid.Parse(token); err != nil {
 				log.Debugf("can't parse uuid '%s'", token)
 				w.WriteHeader(http.StatusUnauthorized)

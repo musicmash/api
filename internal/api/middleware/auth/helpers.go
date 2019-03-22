@@ -14,3 +14,7 @@ func setUserName(r *http.Request, userName string) {
 func GetUserName(r *http.Request) string {
 	return r.Header.Get(HeaderUserName)
 }
+
+func GetToken(r *http.Request) string {
+	return r.Header.Get(HeaderToken)
+}
