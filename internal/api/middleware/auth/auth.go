@@ -3,7 +3,7 @@ package auth
 import (
 	"github.com/musicmash/api/internal/log"
 	"github.com/musicmash/auth/pkg/api"
-	"github.com/musicmash/auth/pkg/api/info"
+	"github.com/musicmash/auth/pkg/api/token"
 	"github.com/pkg/errors"
 )
 
@@ -21,10 +21,10 @@ func NewAuthorizer(provider *api.Provider) Authorizer {
 	return &MusicAuthorizer{Provider: provider}
 }
 
-func (m *MusicAuthorizer) Authorize(token string) (username string, err error) {
-	session, err := info.Get(m.Provider, token)
+func (m *MusicAuthorizer) Authorize(uuid string) (username string, err error) {
+	session, err := token.GetDetails(m.Provider, uuid)
 	if err != nil {
-		log.Debugf("can't find session with provided token '%s'", token)
+		log.Debugf("can't find session with provided token '%s'", uuid)
 		return "", ErrNotAuthorized
 	}
 	return session.UserName, nil

@@ -46,15 +46,15 @@
 
 [[projects]]
   branch = "develop"
-  digest = "1:48e17c1b89b3a93260a1526a1a9e8d8f3cc56ce6126761ade9e24fd22c1862a9"
+  digest = "1:ae9a998d0f0d9008c56622a48409dc9ab2af29365546a9d5997e41fa5cd48488"
   name = "github.com/musicmash/auth"
   packages = [
     "pkg/api",
     "pkg/api/auth",
-    "pkg/api/info",
+    "pkg/api/token",
   ]
   pruneopts = "UT"
-  revision = "6377797a9ea65c3d810ad40aafdba8fce9cf5962"
+  revision = "ba03f5ba7b1e5eac7c161c1429be26078ac487e8"
 
 [[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
@@ -136,7 +136,7 @@
     "github.com/google/uuid",
     "github.com/musicmash/auth/pkg/api",
     "github.com/musicmash/auth/pkg/api/auth",
-    "github.com/musicmash/auth/pkg/api/info",
+    "github.com/musicmash/auth/pkg/api/token",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/sirupsen/logrus",
