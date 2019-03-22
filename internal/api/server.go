@@ -25,6 +25,7 @@ func getMux(authMiddleware custommiddleware.Middleware) *chi.Mux {
 	r.Post("/auth", authUser)
 
 	r.Route("/token", func(r chi.Router) {
+		r.Use(authMiddleware)
 		r.Delete("/", deleteToken)
 	})
 
