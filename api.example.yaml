@@ -3,7 +3,7 @@ http:
 
 log:
     level: DEBUG
-    file: 'musicmash.log'
+    file: 'api.log'
     syslog_enable: false
 
 sentry:
