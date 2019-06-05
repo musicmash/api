@@ -1,17 +1,17 @@
 http:
-    port: 1234
+  port: 1234
 
 log:
-    level: DEBUG
-    file: 'api.log'
+  level: DEBUG
+  file: api.log
 
 sentry:
   enabled: true
-  key: "https://xxxxx:yyyyy@sentry.io/123456"
+  key: https://xxxxx:yyyyy@sentry.io/123456
 
 services:
-  artists: "https://internal/artists"
-  feed: "https://internal/feed"
-  subscriptions: "https://internal/subscriptions"
-  users: "https://internal/users"
-  auth: "https://internal/auth"
+  artists: https://internal/artists
+  feed: https://internal/feed
+  subscriptions: https://internal/subscriptions
+  users: https://internal/users
+  auth: https://internal/auth
