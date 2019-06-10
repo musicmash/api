@@ -1,8 +1,6 @@
 package api
 
-import (
-	"net/http/httptest"
-)
+import "net/http/httptest"
 
 var (
 	server *httptest.Server
