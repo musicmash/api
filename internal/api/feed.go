@@ -5,13 +5,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/musicmash/api/internal/api/middleware/auth"
 	"github.com/musicmash/api/internal/clients/feed"
 	"github.com/musicmash/api/internal/log"
 )
 
 func getUserFeed(w http.ResponseWriter, r *http.Request) {
-	userName := auth.GetUserName(r)
+	userName := GetUserName(r)
 	since := r.URL.Query().Get("since")
 	weekAgo := time.Now().UTC().Add(-time.Hour * 24 * 7)
 	if since != "" {

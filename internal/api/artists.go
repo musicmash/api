@@ -6,13 +6,12 @@ import (
 	"strings"
 
 	"github.com/go-chi/chi"
-	"github.com/musicmash/api/internal/api/middleware/auth"
 	"github.com/musicmash/api/internal/clients/artists"
 	"github.com/musicmash/api/internal/log"
 )
 
 func searchArtist(w http.ResponseWriter, r *http.Request) {
-	userName := auth.GetUserName(r)
+	userName := GetUserName(r)
 	artistName := strings.TrimSpace(r.URL.Query().Get("name"))
 	if artistName == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -37,7 +36,7 @@ func searchArtist(w http.ResponseWriter, r *http.Request) {
 }
 
 func getArtistDetails(w http.ResponseWriter, r *http.Request) {
-	userName := auth.GetUserName(r)
+	userName := GetUserName(r)
 	artistName := chi.URLParam(r, "artist_name")
 	artists, err := artists.GetDetails(artistsProvider, userName, artistName)
 	if err != nil {
