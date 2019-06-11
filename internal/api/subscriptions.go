@@ -48,7 +48,7 @@ func (s *SubscriptionsController) createSubscriptions(w http.ResponseWriter, r *
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	w.WriteHeader(http.StatusAccepted)
+	w.WriteHeader(http.StatusOK)
 }
 
 func (s *SubscriptionsController) deleteSubscriptions(w http.ResponseWriter, r *http.Request) {
