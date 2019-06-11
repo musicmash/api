@@ -98,7 +98,7 @@ func TestAPI_Subscriptions_Create_WithLimit(t *testing.T) {
 	})
 
 	// action
-	ids := make([]int64, 666, 666)
+	ids := make([]int64, 666)
 	err := subscriptions.Create(client, testutils.UserObjque, ids)
 
 	// assert
@@ -156,7 +156,7 @@ func TestAPI_Subscriptions_Delete_WithLimit(t *testing.T) {
 	})
 
 	// action
-	ids := make([]int64, 666, 666)
+	ids := make([]int64, 666)
 	err := subscriptions.Delete(client, testutils.UserObjque, ids)
 
 	// assert
