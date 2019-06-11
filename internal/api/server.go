@@ -38,7 +38,6 @@ func getMux() *chi.Mux {
 
 	r.Route("/artists", func(r chi.Router) {
 		r.Get("/", searchArtist)
-		r.Get("/{artist_name}", getArtistDetails)
 	})
 	return r
 }
