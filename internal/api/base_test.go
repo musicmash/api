@@ -18,6 +18,7 @@ func setup() {
 	env = testutils.Setup()
 	config.Config = &config.AppConfig{
 		Services: config.Services{
+			Artists:       env.Server.URL,
 			Subscriptions: env.Server.URL,
 		},
 	}

@@ -37,6 +37,17 @@
   version = "v3.3.3"
 
 [[projects]]
+  branch = "master"
+  digest = "1:4544719469949e259f5fcff90ebb9ece176411011faedccbd263813812375f38"
+  name = "github.com/musicmash/artists"
+  packages = [
+    "pkg/api",
+    "pkg/api/search",
+  ]
+  pruneopts = "UT"
+  revision = "a468540ed65bbbc645012d39a14d70da0eb4d182"
+
+[[projects]]
   branch = "develop"
   digest = "1:c4623d28140efaff7b213ab15bd8e84f8296ffcf63db87e2edcf4514a5d6cdd3"
   name = "github.com/musicmash/auth"
@@ -132,6 +143,8 @@
     "github.com/getsentry/raven-go",
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
+    "github.com/musicmash/artists/pkg/api",
+    "github.com/musicmash/artists/pkg/api/search",
     "github.com/musicmash/auth/pkg/api",
     "github.com/musicmash/auth/pkg/api/auth",
     "github.com/musicmash/subscriptions/pkg/api",

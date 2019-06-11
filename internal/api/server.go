@@ -8,7 +8,8 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/musicmash/api/internal/config"
 	"github.com/musicmash/api/internal/log"
-	"github.com/musicmash/subscriptions/pkg/api"
+	artsapi "github.com/musicmash/artists/pkg/api"
+	subsapi "github.com/musicmash/subscriptions/pkg/api"
 )
 
 func getMux() *chi.Mux {
@@ -33,12 +34,10 @@ func getMux() *chi.Mux {
 	})
 
 	r.Route("/v1", func(r chi.Router) {
-		NewSubscriptionsController(api.NewProvider(config.Config.Services.Subscriptions, 1)).Register(r)
+		NewArtistsController(artsapi.NewProvider(config.Config.Services.Artists, 1)).Register(r)
+		NewSubscriptionsController(subsapi.NewProvider(config.Config.Services.Subscriptions, 1)).Register(r)
 	})
 
-	r.Route("/artists", func(r chi.Router) {
-		r.Get("/", searchArtist)
-	})
 	return r
 }
 

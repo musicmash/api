@@ -4,3 +4,8 @@ package testutils
 const (
 	UserObjque = "objque@me"
 )
+
+// Artists
+const (
+	ArtistSkrillex = "skrillex"
+)
