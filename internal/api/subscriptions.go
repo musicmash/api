@@ -59,6 +59,11 @@ func (s *SubscriptionsController) deleteSubscriptions(w http.ResponseWriter, r *
 		return
 	}
 
+	if len(userArtists) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	if len(userArtists) > 100 {
 		userArtists = userArtists[0:100]
 	}

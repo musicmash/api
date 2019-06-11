@@ -163,3 +163,14 @@ func TestAPI_Subscriptions_Delete_WithLimit(t *testing.T) {
 	assert.NoError(t, err)
 	assert.True(t, subscriptionsServiceCalled)
 }
+
+func TestAPI_Subscriptions_Delete_EmptySubs(t *testing.T) {
+	setup()
+	defer teardown()
+
+	// action
+	err := subscriptions.Delete(client, testutils.UserObjque, []int64{})
+
+	// assert
+	assert.Error(t, err)
+}
