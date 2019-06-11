@@ -139,3 +139,27 @@ func TestAPI_Subscriptions_Delete(t *testing.T) {
 	assert.NoError(t, err)
 	assert.True(t, subscriptionsServiceCalled)
 }
+
+func TestAPI_Subscriptions_Delete_WithLimit(t *testing.T) {
+	setup()
+	defer teardown()
+
+	// arrange
+	// mock subscriptions service api
+	subscriptionsServiceCalled := false
+	testutils.HandleReqWithoutBody(t, testutils.HandleReqWithoutBodyOpts{
+		Mux:        env.Mux,
+		URL:        "/v1/subscriptions",
+		Method:     http.MethodDelete,
+		HTTPStatus: http.StatusOK,
+		CallFlag:   &subscriptionsServiceCalled,
+	})
+
+	// action
+	ids := make([]int64, 666, 666)
+	err := subscriptions.Delete(client, testutils.UserObjque, ids)
+
+	// assert
+	assert.NoError(t, err)
+	assert.True(t, subscriptionsServiceCalled)
+}
