@@ -82,6 +82,17 @@ func TestAPI_Subscriptions_Create(t *testing.T) {
 	assert.True(t, subscriptionsServiceCalled)
 }
 
+func TestAPI_Subscriptions_Create_EmptySubs(t *testing.T) {
+	setup()
+	defer teardown()
+
+	// action
+	err := subscriptions.Create(client, testutils.UserObjque, []int64{})
+
+	// assert
+	assert.Error(t, err)
+}
+
 func TestAPI_Subscriptions_Delete(t *testing.T) {
 	setup()
 	defer teardown()

@@ -35,6 +35,11 @@ func (s *SubscriptionsController) createSubscriptions(w http.ResponseWriter, r *
 		return
 	}
 
+	if len(userArtists) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	if err := subscriptions.Create(s.provider, userName, userArtists); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
