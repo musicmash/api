@@ -37,16 +37,37 @@
   version = "v3.3.3"
 
 [[projects]]
+  branch = "master"
+  digest = "1:4544719469949e259f5fcff90ebb9ece176411011faedccbd263813812375f38"
+  name = "github.com/musicmash/artists"
+  packages = [
+    "pkg/api",
+    "pkg/api/search",
+  ]
+  pruneopts = "UT"
+  revision = "a468540ed65bbbc645012d39a14d70da0eb4d182"
+
+[[projects]]
   branch = "develop"
-  digest = "1:ae9a998d0f0d9008c56622a48409dc9ab2af29365546a9d5997e41fa5cd48488"
+  digest = "1:c4623d28140efaff7b213ab15bd8e84f8296ffcf63db87e2edcf4514a5d6cdd3"
   name = "github.com/musicmash/auth"
   packages = [
     "pkg/api",
     "pkg/api/auth",
-    "pkg/api/token",
   ]
   pruneopts = "UT"
   revision = "ba03f5ba7b1e5eac7c161c1429be26078ac487e8"
+
+[[projects]]
+  branch = "develop"
+  digest = "1:5053d12e3f61614e752d7afae1615d99463c0cc4257b327f252f4973fff32ebb"
+  name = "github.com/musicmash/subscriptions"
+  packages = [
+    "pkg/api",
+    "pkg/api/subscriptions",
+  ]
+  pruneopts = "UT"
+  revision = "9fd6a0a6c3603f3d466e9db508a4eb2a36ae210e"
 
 [[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
@@ -122,9 +143,12 @@
     "github.com/getsentry/raven-go",
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
+    "github.com/musicmash/artists/pkg/api",
+    "github.com/musicmash/artists/pkg/api/search",
     "github.com/musicmash/auth/pkg/api",
     "github.com/musicmash/auth/pkg/api/auth",
-    "github.com/musicmash/auth/pkg/api/token",
+    "github.com/musicmash/subscriptions/pkg/api",
+    "github.com/musicmash/subscriptions/pkg/api/subscriptions",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/sirupsen/logrus",

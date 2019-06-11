@@ -11,8 +11,6 @@ import (
 )
 
 func TestAPI_Auth(t *testing.T) {
-	env := testutils.Setup()
-	defer env.TearDown()
 	setup()
 	defer teardown()
 
