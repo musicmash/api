@@ -43,7 +43,6 @@
   packages = [
     "pkg/api",
     "pkg/api/auth",
-    "pkg/api/token",
   ]
   pruneopts = "UT"
   revision = "ba03f5ba7b1e5eac7c161c1429be26078ac487e8"
@@ -124,7 +123,6 @@
     "github.com/go-chi/chi/middleware",
     "github.com/musicmash/auth/pkg/api",
     "github.com/musicmash/auth/pkg/api/auth",
-    "github.com/musicmash/auth/pkg/api/token",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/sirupsen/logrus",
