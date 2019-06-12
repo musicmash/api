@@ -73,6 +73,16 @@ func TestAPI_Subscriptions_Create(t *testing.T) {
 		HTTPStatus: http.StatusOK,
 		CallFlag:   &subscriptionsServiceCalled,
 	})
+	// mock artists service api
+	artistsServiceCalled := false
+	testutils.HandleReqWithoutBody(t, testutils.HandleReqWithoutBodyOpts{
+		Mux:         env.Mux,
+		URL:         "/v1/validate",
+		RawResponse: `[1, 2, 3]`,
+		Method:      http.MethodPost,
+		HTTPStatus:  http.StatusOK,
+		CallFlag:    &artistsServiceCalled,
+	})
 
 	// action
 	err := subscriptions.Create(client, testutils.UserObjque, []int64{1, 2, 3})
@@ -80,6 +90,7 @@ func TestAPI_Subscriptions_Create(t *testing.T) {
 	// assert
 	assert.NoError(t, err)
 	assert.True(t, subscriptionsServiceCalled)
+	assert.True(t, artistsServiceCalled)
 }
 
 func TestAPI_Subscriptions_Create_WithLimit(t *testing.T) {
@@ -96,6 +107,16 @@ func TestAPI_Subscriptions_Create_WithLimit(t *testing.T) {
 		HTTPStatus: http.StatusOK,
 		CallFlag:   &subscriptionsServiceCalled,
 	})
+	// mock artists service api
+	artistsServiceCalled := false
+	testutils.HandleReqWithoutBody(t, testutils.HandleReqWithoutBodyOpts{
+		Mux:         env.Mux,
+		URL:         "/v1/validate",
+		RawResponse: `[1, 2, 3]`,
+		Method:      http.MethodPost,
+		HTTPStatus:  http.StatusOK,
+		CallFlag:    &artistsServiceCalled,
+	})
 
 	// action
 	ids := make([]int64, 666)
@@ -104,6 +125,7 @@ func TestAPI_Subscriptions_Create_WithLimit(t *testing.T) {
 	// assert
 	assert.NoError(t, err)
 	assert.True(t, subscriptionsServiceCalled)
+	assert.True(t, artistsServiceCalled)
 }
 
 func TestAPI_Subscriptions_Create_EmptySubs(t *testing.T) {

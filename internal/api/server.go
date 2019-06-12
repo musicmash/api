@@ -34,8 +34,11 @@ func getMux() *chi.Mux {
 	})
 
 	r.Route("/v1", func(r chi.Router) {
-		NewArtistsController(artsapi.NewProvider(config.Config.Services.Artists, 1)).Register(r)
-		NewSubscriptionsController(subsapi.NewProvider(config.Config.Services.Subscriptions, 1)).Register(r)
+		artistsProvider := artsapi.NewProvider(config.Config.Services.Artists, 1)
+		subscriptionsProvider := subsapi.NewProvider(config.Config.Services.Subscriptions, 1)
+
+		NewArtistsController(artistsProvider).Register(r)
+		NewSubscriptionsController(subscriptionsProvider, artistsProvider).Register(r)
 	})
 
 	return r

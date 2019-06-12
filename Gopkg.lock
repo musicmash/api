@@ -38,10 +38,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:4544719469949e259f5fcff90ebb9ece176411011faedccbd263813812375f38"
+  digest = "1:f0d2e06ac9bf88c9e1cf946b35a39757bfae602009d45e198051f150173817d2"
   name = "github.com/musicmash/artists"
   packages = [
     "pkg/api",
+    "pkg/api/artists",
     "pkg/api/search",
   ]
   pruneopts = "UT"
@@ -144,6 +145,7 @@
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
     "github.com/musicmash/artists/pkg/api",
+    "github.com/musicmash/artists/pkg/api/artists",
     "github.com/musicmash/artists/pkg/api/search",
     "github.com/musicmash/auth/pkg/api",
     "github.com/musicmash/auth/pkg/api/auth",
