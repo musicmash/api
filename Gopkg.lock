@@ -38,14 +38,15 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:4544719469949e259f5fcff90ebb9ece176411011faedccbd263813812375f38"
+  digest = "1:0ceca9e4a355b6aa4495e2fd0cad5a3b8766df5044257256714038dc5a121f85"
   name = "github.com/musicmash/artists"
   packages = [
     "pkg/api",
+    "pkg/api/artists",
     "pkg/api/search",
   ]
   pruneopts = "UT"
-  revision = "a468540ed65bbbc645012d39a14d70da0eb4d182"
+  revision = "5d1cf52bd65c2d7ba83d2ead288d328f257fccf1"
 
 [[projects]]
   branch = "develop"
@@ -60,14 +61,14 @@
 
 [[projects]]
   branch = "develop"
-  digest = "1:5053d12e3f61614e752d7afae1615d99463c0cc4257b327f252f4973fff32ebb"
+  digest = "1:edb8f51923073025e159391b0615f968fa54db49d8ffb843e7e639dc871cf9bf"
   name = "github.com/musicmash/subscriptions"
   packages = [
     "pkg/api",
     "pkg/api/subscriptions",
   ]
   pruneopts = "UT"
-  revision = "9fd6a0a6c3603f3d466e9db508a4eb2a36ae210e"
+  revision = "3bf4075ba7220ebe4d30eac2977c58d499c0c591"
 
 [[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
@@ -144,6 +145,7 @@
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
     "github.com/musicmash/artists/pkg/api",
+    "github.com/musicmash/artists/pkg/api/artists",
     "github.com/musicmash/artists/pkg/api/search",
     "github.com/musicmash/auth/pkg/api",
     "github.com/musicmash/auth/pkg/api/auth",
