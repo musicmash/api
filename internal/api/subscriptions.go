@@ -102,8 +102,22 @@ func (s *SubscriptionsController) getUserSubscriptions(w http.ResponseWriter, r 
 		return
 	}
 
-	buffer, err := json.Marshal(&userSubscriptions)
+	if len(userSubscriptions) == 0 {
+		w.Header().Set("content-type", "application/json")
+		w.Write([]byte(`[]`))
+		return
+	}
+
+	artists, err := artists.GetFullInfo(s.artistsProvider, userSubscriptions)
 	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	buffer, err := json.Marshal(&artists)
+	if err != nil {
+		log.Error(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}

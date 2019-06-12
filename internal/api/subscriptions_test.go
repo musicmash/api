@@ -19,10 +19,20 @@ func TestAPI_Subscriptions_Get(t *testing.T) {
 	testutils.HandleReqWithoutBody(t, testutils.HandleReqWithoutBodyOpts{
 		Mux:         env.Mux,
 		URL:         "/v1/subscriptions",
-		RawResponse: `[{"artist_id": 1}, {"artist_id": 2}, {"artist_id": 3}]`,
+		RawResponse: `[1, 2, 3]`,
 		Method:      http.MethodGet,
 		HTTPStatus:  http.StatusOK,
 		CallFlag:    &subscriptionsServiceCalled,
+	})
+	// mock artists service api
+	artistsServiceCalled := false
+	testutils.HandleReqWithoutBody(t, testutils.HandleReqWithoutBodyOpts{
+		Mux:         env.Mux,
+		URL:         "/v1/artists",
+		RawResponse: `[{"artist_id": 1}, {"artist_id": 2}, {"artist_id": 3}]`,
+		Method:      http.MethodPost,
+		HTTPStatus:  http.StatusOK,
+		CallFlag:    &artistsServiceCalled,
 	})
 
 	// action
@@ -31,6 +41,7 @@ func TestAPI_Subscriptions_Get(t *testing.T) {
 	// assert
 	assert.NoError(t, err)
 	assert.True(t, subscriptionsServiceCalled)
+	assert.True(t, artistsServiceCalled)
 	assert.Len(t, subs, 3)
 }
 
