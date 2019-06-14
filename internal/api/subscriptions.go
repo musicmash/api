@@ -104,7 +104,7 @@ func (s *SubscriptionsController) getUserSubscriptions(w http.ResponseWriter, r 
 
 	if len(userSubscriptions) == 0 {
 		w.Header().Set("content-type", "application/json")
-		w.Write([]byte(`[]`))
+		_, _ = w.Write([]byte(`[]`))
 		return
 	}
 
@@ -122,5 +122,5 @@ func (s *SubscriptionsController) getUserSubscriptions(w http.ResponseWriter, r 
 		return
 	}
 	w.Header().Set("content-type", "application/json")
-	w.Write(buffer)
+	_, _ = w.Write(buffer)
 }

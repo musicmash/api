@@ -34,5 +34,5 @@ func authUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("content-type", "application/json")
-	w.Write(body)
+	_, _ = w.Write(body)
 }

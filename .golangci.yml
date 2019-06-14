@@ -106,7 +106,6 @@ linters:
   disable:
     # ignore not critical dupl errors until they will be fixed
     - dupl
-    - errcheck
     - lll
     - gochecknoglobals
   fast: false
