@@ -23,12 +23,6 @@ func getMux() *chi.Mux {
 
 	r.Get("/healthz", healthz)
 
-	r.Post("/auth", authUser)
-
-	r.Route("/token", func(r chi.Router) {
-		r.Delete("/", deleteToken)
-	})
-
 	r.Route("/feed", func(r chi.Router) {
 		r.Get("/", getUserFeed)
 	})

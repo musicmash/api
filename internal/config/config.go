@@ -36,7 +36,6 @@ type Services struct {
 	Feed          string `yaml:"feed"`
 	Subscriptions string `yaml:"subscriptions"`
 	Users         string `yaml:"users"`
-	Auth          string `yaml:"auth"`
 }
 
 func InitConfig(filepath string) error {

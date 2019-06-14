@@ -50,14 +50,11 @@
 
 [[projects]]
   branch = "develop"
-  digest = "1:c4623d28140efaff7b213ab15bd8e84f8296ffcf63db87e2edcf4514a5d6cdd3"
+  digest = "1:edeeb517c4185eaa8ef28eddac8d68b803913390731f9dfb100f7dbd0ca0332b"
   name = "github.com/musicmash/auth"
-  packages = [
-    "pkg/api",
-    "pkg/api/auth",
-  ]
+  packages = ["pkg/api"]
   pruneopts = "UT"
-  revision = "ba03f5ba7b1e5eac7c161c1429be26078ac487e8"
+  revision = "d7a07a435aa52ac3ef2906ad669958eb34fb473b"
 
 [[projects]]
   branch = "develop"
@@ -148,7 +145,6 @@
     "github.com/musicmash/artists/pkg/api/artists",
     "github.com/musicmash/artists/pkg/api/search",
     "github.com/musicmash/auth/pkg/api",
-    "github.com/musicmash/auth/pkg/api/auth",
     "github.com/musicmash/subscriptions/pkg/api",
     "github.com/musicmash/subscriptions/pkg/api/subscriptions",
     "github.com/pkg/errors",

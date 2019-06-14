@@ -26,7 +26,6 @@ services:
   feed: https://internal/feed
   subscriptions: https://internal/subscriptions
   users: https://internal/users
-  auth: https://internal/auth
 `
 	expected := &AppConfig{
 		HTTP: HTTPConfig{
@@ -45,7 +44,6 @@ services:
 			Feed:          "https://internal/feed",
 			Subscriptions: "https://internal/subscriptions",
 			Users:         "https://internal/users",
-			Auth:          "https://internal/auth",
 		},
 	}
 
