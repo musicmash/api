@@ -12,6 +12,4 @@ sentry:
 services:
   artists: https://internal/artists
   feed: https://internal/feed
-  subscriptions: https://internal/subscriptions
-  users: https://internal/users
-  auth: https://internal/auth
+  subscriptions: https://internal/subscriptionsƒ
