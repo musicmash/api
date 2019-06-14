@@ -104,8 +104,6 @@ linters-settings:
 linters:
   enable-all: true
   disable:
-    # ignore not critical dupl errors until they will be fixed
-    - dupl
     - lll
     - gochecknoglobals
   fast: false
