@@ -7,5 +7,6 @@ const (
 
 // Artists
 const (
-	ArtistSkrillex = "skrillex"
+	ArtistSkrillex        = "skrillex"
+	ArtistWolvesAtTheGate = "wolves at the gate"
 )
